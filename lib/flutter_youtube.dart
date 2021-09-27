@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:meta/meta.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class FlutterYoutube {
   static const EventChannel _stream =
       EventChannel('PonnamKarthik/flutter_youtube_stream');
 
-  static String getIdFromUrl(String url, [bool trimWhitespaces = true]) {
+  static String? getIdFromUrl(String? url, [bool trimWhitespaces = true]) {
     if (url == null || url.isEmpty) {
       return null;
     }
@@ -20,7 +20,7 @@ class FlutterYoutube {
     }
 
     for (RegExp exp in _regexps) {
-      final Match match = exp.firstMatch(url);
+      final match = exp.firstMatch(url);
       if (match != null && match.groupCount >= 1) {
         return match.group(1);
       }
@@ -38,23 +38,23 @@ class FlutterYoutube {
   ];
 
   static playYoutubeVideoByUrl({
-    @required String apiKey,
-    @required String videoUrl,
+    required String apiKey,
+    required String videoUrl,
     bool autoPlay = false,
     bool fullScreen = false,
     bool appBarVisible = false,
     Color appBarColor = Colors.black,
     Color backgroundColor = Colors.black,
   }) {
-    if (apiKey.isEmpty || apiKey == null) {
+    if (apiKey.isEmpty) {
       throw 'Invalid API Key';
     }
 
-    if (videoUrl == null || videoUrl.isEmpty) {
+    if (videoUrl.isEmpty) {
       throw 'Invalid Youtube URL';
     }
 
-    final String id = getIdFromUrl(videoUrl);
+    final id = getIdFromUrl(videoUrl);
 
     if (id == null) {
       throw 'Error extracting Youtube id from URL';
@@ -73,19 +73,19 @@ class FlutterYoutube {
   }
 
   static playYoutubeVideoById({
-    @required String apiKey,
-    @required String videoId,
+    required String apiKey,
+    required String videoId,
     bool autoPlay = false,
     bool fullScreen = false,
     bool appBarVisible = false,
     Color appBarColor = Colors.grey,
     Color backgroundColor = Colors.black,
   }) {
-    if (apiKey.isEmpty || apiKey == null) {
+    if (apiKey.isEmpty) {
       throw 'Invalid API Key';
     }
 
-    if (videoId == null || videoId.isEmpty) {
+    if (videoId.isEmpty) {
       throw 'Invalid Youtube URL';
     }
 
@@ -100,8 +100,6 @@ class FlutterYoutube {
     };
     _channel.invokeMethod('playYoutubeVideo', params);
   }
-
-  Stream<String> done;
 
   static Stream<String> get onVideoEnded {
     final Stream<String> d =
