@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => new _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  TextEditingController textEditingControllerUrl = new TextEditingController();
-  TextEditingController textEditingControllerId = new TextEditingController();
+  TextEditingController textEditingControllerUrl = TextEditingController();
+  TextEditingController textEditingControllerId = TextEditingController();
 
   @override
   initState() {
@@ -59,52 +59,51 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Youtube Player'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Youtube Player'),
         ),
-        body: new SingleChildScrollView(
-          child: new Column(
+        body: SingleChildScrollView(
+          child: Column(
             children: <Widget>[
-              new Padding(
+              Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: new TextField(
+                child: TextField(
                   controller: textEditingControllerUrl,
-                  decoration:
-                      new InputDecoration(labelText: "Enter Youtube URL"),
+                  decoration: InputDecoration(labelText: "Enter Youtube URL"),
                 ),
               ),
-              new Padding(
+              Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: new RaisedButton(
-                    child: new Text("Play Video By Url"),
+                child: ElevatedButton(
+                    child: Text("Play Video By Url"),
                     onPressed: playYoutubeVideoEdit),
               ),
-              new Padding(
+              Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: new RaisedButton(
-                    child: new Text("Play Default Video"),
+                child: ElevatedButton(
+                    child: Text("Play Default Video"),
                     onPressed: playYoutubeVideo),
               ),
-              new Padding(
+              Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: new TextField(
+                child: TextField(
                   controller: textEditingControllerId,
-                  decoration: new InputDecoration(
+                  decoration: InputDecoration(
                       labelText: "Youtube Video Id (wgTBLj7rMPM)"),
                 ),
               ),
-              new Padding(
+              Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: new RaisedButton(
-                    child: new Text("Play Video By Id"),
+                child: ElevatedButton(
+                    child: Text("Play Video By Id"),
                     onPressed: playYoutubeVideoIdEdit),
               ),
-              new Padding(
+              Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: new RaisedButton(
-                    child: new Text("Auto Play Video By Id"),
+                child: ElevatedButton(
+                    child: Text("Auto Play Video By Id"),
                     onPressed: playYoutubeVideoIdEditAuto),
               ),
             ],
